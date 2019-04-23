@@ -1,0 +1,12 @@
+build/*
+CMakeFiles/*
+tests/CMakeFiles/*
+tests/test_*
+CMakeFileCache.txt
+CMakeCache.txt
+Makefile
+*.cmake
+*.a
+generated/*
+.kdev4/*
+*.kdev4
