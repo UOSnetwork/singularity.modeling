@@ -2,6 +2,8 @@
 #ifndef BITCOINEXPLORER_HPP
 #define BITCOINEXPLORER_HPP
 
+#ifdef USE_BITCOIN
+
 #include "../libraries/singularity/include/singularity.hpp"
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -24,4 +26,6 @@ public:
     void test();
 };
 
-#endif
+#endif /* USE_BITCOIN */
+
+#endif /* BITCOINEXPLORER_HPP */

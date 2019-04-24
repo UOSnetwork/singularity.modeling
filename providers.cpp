@@ -12,27 +12,6 @@ vector<shared_ptr<relation_t> > testnet_provider_t::get_block()
     return im.import_relations(relations_filename);
 };
 
-vector<shared_ptr<relation_t> > bitcoin_provider_t::get_block()
-{
-    vector<shared_ptr<relation_t> > block;
-    
-    string file_name;
-    uint32_t height;
-    
-    bitcoin_explorer be;
-    
-    for (uint32_t i=end_block; i >= start_block; i--) {
-        height++;
-        string file = bitcoin_data_dir + "b" + to_string(i) + ".json";
-        cout << file << endl;
-        auto extracted_transactions = be.extract_transactions( file, height);
-        
-        block.insert(block.end(), extracted_transactions.begin(), extracted_transactions.end());
-    }
-    
-    return block;
-};
-
 vector<shared_ptr<relation_t> > stress_test_provider_t::get_block()
 {
     vector<shared_ptr<relation_t> > transactions;

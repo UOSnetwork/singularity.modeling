@@ -22,9 +22,9 @@ public:
     {
         std::cout << "start" << "\n";
         for(auto rank: *ranks) {
-//             std::cout << rank.first << "\t" << /* rank.second.str() */ "0" << "\n";
             output << rank.first << "\t" << rank.second.str() << "\n";
         }
+        std::cout << "end" << "\n";
     };
     
 };
