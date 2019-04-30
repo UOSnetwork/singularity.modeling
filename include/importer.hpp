@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include "../libraries/singularity/include/singularity.hpp"
+#include <stdexcept>
 
 class importer 
 {
@@ -130,6 +131,50 @@ public:
         }
 
         return rebuilded_relations;
+    };
+    
+    std::map<std::string, singularity::money_t> import_stack(std::string filename, uint64_t precision)
+    {
+        std::ifstream file(filename);
+
+        std::map<std::string, singularity::money_t> stack_map;
+    
+        uint64_t line_no = 0;
+        
+        while (file.good()) {
+            std::string line;
+    
+            getline(file, line);
+        
+            std::vector<std::string> parsed_line;
+        
+            std::istringstream sline(line);
+        
+            while (sline.good()) {
+                std::string value;
+                getline(sline, value, ';');
+                parsed_line.push_back(value);
+            }
+            
+            line_no ++;
+            
+            if (line_no == 1) {
+                continue;
+            }
+        
+            if (parsed_line.size() == 4) {
+                std::string name = parsed_line[0];
+                std::string stack_str = parsed_line[3];
+                singularity::money_t stack(0);
+                if (stack_str.size() > 4) {
+                    stack = precision * stod( stack_str.substr(0, stack_str.size() - 4));
+                    stack_map[name] = stack;
+                }
+            }
+        }
+        file.close();
+        
+        return stack_map;
     };
     
     

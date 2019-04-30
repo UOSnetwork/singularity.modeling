@@ -78,10 +78,11 @@ private:
 class stack_import_from_file_provider_t: public stack_provider_t
 {
 public:
-    stack_import_from_file_provider_t(std::string file_name): file_name(file_name) {};
+    stack_import_from_file_provider_t(std::string file_name, uint64_t precision): file_name(file_name), precision(precision) {};
     virtual std::map<std::string, singularity::money_t> get_stack();
 private:
     std::string file_name;
+    uint64_t precision;
 };
 
 #endif

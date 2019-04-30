@@ -68,8 +68,8 @@ vector<shared_ptr<relation_t> > concentrate_attack_provider_t::get_block()
 
 map<string, money_t> stack_import_from_file_provider_t::get_stack()
 {
-    map<string, money_t> result;
+    importer im;
     
-    return result;
+    return im.import_stack(file_name, precision);
 }
 
