@@ -44,11 +44,14 @@ endif ( APPLE )
 include_directories( include )
 
 add_executable( example programs/example.cpp ${HEADERS} ${SOURCE_EXE} )
+add_executable( stress_test programs/stress_test.cpp ${HEADERS} ${SOURCE_EXE} )
 
 if (WITH_BITCOIN)
     target_link_libraries( example singularity boost_system bitcoin)
+    target_link_libraries( stress_test singularity boost_system bitcoin)
 else ()
     target_link_libraries( example singularity boost_system)
+    target_link_libraries( stress_test singularity boost_system)
 endif ()
     
 add_subdirectory( tests )
